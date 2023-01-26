@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import {getClassNames} from "../../utils/classNameUtils";
 
 type ConfigurationStepProps = {
     stepTitle: string,
