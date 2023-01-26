@@ -1,0 +1,39 @@
+.form-element {
+
+  label {
+    color: $color-grey-200;
+    font-size: $font-size14;
+  }
+
+  input, textarea {
+    background: $input-color;
+    outline: none;
+    border: 1px solid $input-color;
+    border-radius: $primary-border-radius;
+    padding: $input-padding;
+  }
+
+  textarea{
+    resize: none;
+  }
+
+  .row{
+   @include itemCenter();
+  }
+}
+
+.form-data{
+  flex-wrap: wrap;
+  justify-content: center;
+
+
+}
+
+.form-group{
+  width: 30%;
+
+    &-bigger-element{
+      width: 37%;
+  }
+}
+

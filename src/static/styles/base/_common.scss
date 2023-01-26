@@ -1,0 +1,49 @@
+.row{
+  @include flex(row);
+}
+
+.column{
+ @include flex(column);
+
+  &-center{
+    @include itemCenter();
+  }
+}
+
+.moveRight{
+  text-align: right;
+}
+
+.moveLeft{
+  text-align: left;
+}
+
+.text-color-grey-200{
+  color: $color-grey-200;
+}
+
+.text-color-primary-blue{
+  color: $primary_blue;
+}
+
+.paragraph{
+  color: $color-grey-200;
+  font-size: $font-size16;
+}
+
+.title{
+
+  &-xl{
+    font-size: $font-size24;
+  }
+  &-l{
+    font-size: $font-size18;
+    font-weight: 400;
+  }
+}
+
+.hidden{
+  display: none;
+}
+
+
