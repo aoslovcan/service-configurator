@@ -1,7 +1,9 @@
 import React from 'react'
+import { TableOptions } from '../../types/types'
 
 type TableProps = {
   id: string
+  tableData : TableOptions[];
 }
 
 const Table = ({ id }: TableProps) => {
