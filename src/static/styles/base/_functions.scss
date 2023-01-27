@@ -1,18 +1,18 @@
-@function rem($value){
+@function rem($value) {
   $base: 0.06rem;
-  @return $value * $base
+  @return $value * $base;
 }
 
-@mixin flex($orientation){
+@mixin flex($orientation) {
   display: flex;
   flex-direction: $orientation;
 }
 
-@mixin itemCenter(){
+@mixin itemCenter() {
   align-items: center;
 }
 
-@mixin buttonIcon($width, $height, $url){
+@mixin buttonIcon($width, $height, $url) {
   background-image: url($url);
   height: $height;
   width: $width;
@@ -22,7 +22,7 @@
 @mixin font($font-family, $font-filename) {
   @font-face {
     font-family: $font-family;
-    src:url("../../fonts/#{$font-filename}.woff") format("woff");
+    src: url('../../fonts/#{$font-filename}.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }

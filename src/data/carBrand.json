@@ -1,5 +1,5 @@
 {
-  "cars" : [
+  "cars": [
     {
       "id": 0,
       "name": "Peugeot"
@@ -11,7 +11,8 @@
     {
       "id": 2,
       "name": "Citroen"
-    }, {
+    },
+    {
       "id": 3,
       "name": "Audi"
     },
@@ -44,9 +45,8 @@
       "name": "Toyota"
     },
     {
-      "id":11,
+      "id": 11,
       "name": "Kia"
     }
   ]
 }
-

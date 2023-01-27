@@ -1,11 +1,13 @@
 .form-element {
+  margin-top: rem(10);
 
   label {
     color: $color-grey-200;
     font-size: $font-size14;
   }
 
-  input, textarea {
+  input,
+  textarea {
     background: $input-color;
     outline: none;
     border: 1px solid $input-color;
@@ -13,27 +15,28 @@
     padding: $input-padding;
   }
 
-  textarea{
+  textarea {
     resize: none;
   }
 
-  .row{
-   @include itemCenter();
+  .row {
+    @include itemCenter();
   }
 }
 
-.form-data{
+.form-data {
   flex-wrap: wrap;
   justify-content: center;
-
-
 }
 
-.form-group{
+.form-group {
   width: 30%;
 
-    &-bigger-element{
-      width: 37%;
+  &-bigger-element {
+    width: 45%;
+  }
+
+  input#html.checkmark {
+    border: 1px solid red;
   }
 }
-

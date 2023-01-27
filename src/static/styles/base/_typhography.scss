@@ -1,24 +1,23 @@
-@import "functions";
+@import 'functions';
 
-@include font("Satoshi", "Satoshi-Regular");
+@include font('Satoshi', 'Satoshi-Regular');
 
-$satoshi: "Satoshi", sans-serif;
+$satoshi: 'Satoshi', sans-serif;
 $primary_font: $satoshi;
 
-$primary_blue : #004289;
+$primary_blue: #004289;
 $primary-color-white: #ffffff;
 $primary-color-grey: #969696;
 $opacity-black-color: rgba(0, 0, 0, 0.15);
 $color-grey-200: #585757;
-$base-black-color: #1C1C1C;
-$input-color: #0000000A;
-$modal-background: #0000007F;
+$base-black-color: #1c1c1c;
+$input-color: #0000000a;
+$modal-background: #0000007f;
 
 $px5: rem(5);
 $px15: rem(15);
 
-
-$button-padding : 0.3rem 0.9rem 0.3rem 0.9rem;
+$button-padding: 0.3rem 0.9rem 0.3rem 0.9rem;
 $input-padding: $px5 rem(10);
 
 $primary-border-radius: 0.18rem;

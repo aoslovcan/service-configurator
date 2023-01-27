@@ -1,6 +1,6 @@
-.c-modal-container{
+.c-modal-container {
   position: absolute;
-  top:0;
+  top: 0;
   height: 100vh;
   width: 100%;
   background: $modal-background;
@@ -8,31 +8,30 @@
   align-items: center;
   justify-content: center;
 
-  .modal{
+  .modal {
     border-radius: $primary-border-radius;
     width: rem(600);
     background: $primary-color-white;
     padding: rem(10);
 
-    &__header{
+    &__header {
       justify-content: space-between;
       align-items: baseline;
       color: $base-black-color;
     }
 
-    &__footer{
+    &__footer {
       justify-content: flex-end;
       margin-top: rem(40);
 
-      button{
+      button {
         margin-right: rem(10);
       }
     }
   }
-  .closeButton{
+  .closeButton {
     justify-content: flex-end;
     font-size: rem(24);
     cursor: pointer;
   }
-
 }

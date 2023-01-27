@@ -1,4 +1,4 @@
-$pencilSize : rem(24);
+$pencilSize: rem(24);
 .pencil-icon {
-  @include buttonIcon($pencilSize, $pencilSize, "../../icons/edit-icon.svg")
+  @include buttonIcon($pencilSize, $pencilSize, '../../icons/edit-icon.svg');
 }

@@ -1,49 +1,46 @@
-.row{
+.row {
   @include flex(row);
 }
 
-.column{
- @include flex(column);
+.column {
+  @include flex(column);
 
-  &-center{
+  &-center {
     @include itemCenter();
   }
 }
 
-.moveRight{
+.moveRight {
   text-align: right;
 }
 
-.moveLeft{
+.moveLeft {
   text-align: left;
 }
 
-.text-color-grey-200{
+.text-color-grey-200 {
   color: $color-grey-200;
 }
 
-.text-color-primary-blue{
+.text-color-primary-blue {
   color: $primary_blue;
 }
 
-.paragraph{
+.paragraph {
   color: $color-grey-200;
   font-size: $font-size16;
 }
 
-.title{
-
-  &-xl{
+.title {
+  &-xl {
     font-size: $font-size24;
   }
-  &-l{
+  &-l {
     font-size: $font-size18;
     font-weight: 400;
   }
 }
 
-.hidden{
+.hidden {
   display: none;
 }
-
-
