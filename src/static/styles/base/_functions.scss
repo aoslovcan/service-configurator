@@ -1,0 +1,29 @@
+@function rem($value) {
+  $base: 0.06rem;
+  @return $value * $base;
+}
+
+@mixin flex($orientation) {
+  display: flex;
+  flex-direction: $orientation;
+}
+
+@mixin itemCenter() {
+  align-items: center;
+}
+
+@mixin buttonIcon($width, $height, $url) {
+  background-image: url($url);
+  height: $height;
+  width: $width;
+  margin-left: rem(10);
+}
+
+@mixin font($font-family, $font-filename) {
+  @font-face {
+    font-family: $font-family;
+    src: url('../../fonts/#{$font-filename}.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+}

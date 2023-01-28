@@ -1,0 +1,37 @@
+@import 'src/static/styles/base/typhography';
+
+.c-button {
+  width: auto;
+  padding: $button-padding;
+  outline: none;
+  border-radius: $primary-border-radius;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: contain;
+
+  &-primary {
+    background-color: $primary_blue;
+    color: $primary-color-white;
+  }
+
+  &-disabled {
+    background: $opacity-black-color;
+    color: $primary-color-grey;
+    border: none !important;
+    pointer-events: none;
+  }
+
+  &-secondary {
+    color: $base-black-color;
+    background: none;
+  }
+
+  &-withPencilIcon {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    background: none;
+    border: none;
+  }
+}

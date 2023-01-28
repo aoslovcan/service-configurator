@@ -1,6 +1,28 @@
-$primary_blue : #004289;
-$primary-color-white: #ffffff;
+@import 'functions';
 
-$font-size16: 16px;
-$font-size18: 18px;
-$font-size24: 24px;
+@include font('Satoshi', 'Satoshi-Regular');
+
+$satoshi: 'Satoshi', sans-serif;
+$primary_font: $satoshi;
+
+$primary_blue: #004289;
+$primary-color-white: #ffffff;
+$primary-color-grey: #969696;
+$opacity-black-color: rgba(0, 0, 0, 0.15);
+$color-grey-200: #585757;
+$base-black-color: #1c1c1c;
+$input-color: #0000000a;
+$modal-background: #0000007f;
+
+$px5: rem(5);
+$px15: rem(15);
+
+$button-padding: 0.3rem 0.9rem 0.3rem 0.9rem;
+$input-padding: $px5 rem(10);
+
+$primary-border-radius: 0.18rem;
+
+$font-size14: rem(14);
+$font-size16: rem(16);
+$font-size18: rem(18);
+$font-size24: rem(24);

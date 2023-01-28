@@ -1,0 +1,52 @@
+{
+  "cars": [
+    {
+      "id": 0,
+      "name": "Peugeot"
+    },
+    {
+      "id": 1,
+      "name": "Volkswagen"
+    },
+    {
+      "id": 2,
+      "name": "Citroen"
+    },
+    {
+      "id": 3,
+      "name": "Audi"
+    },
+    {
+      "id": 4,
+      "name": "BMW"
+    },
+    {
+      "id": 5,
+      "name": "Seat"
+    },
+    {
+      "id": 6,
+      "name": "Alfa Romeo"
+    },
+    {
+      "id": 7,
+      "name": "Kia"
+    },
+    {
+      "id": 8,
+      "name": "Hyundai"
+    },
+    {
+      "id": 9,
+      "name": "Honda"
+    },
+    {
+      "id": 10,
+      "name": "Toyota"
+    },
+    {
+      "id": 11,
+      "name": "Kia"
+    }
+  ]
+}
