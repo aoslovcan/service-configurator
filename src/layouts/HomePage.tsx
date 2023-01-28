@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import cars from '../data/carBrand.json'
 import services from '../data/services.json'
-import ConfiguratorModal from '../components/ConfiguratorModal/ConfiguratorModal'
-import ConfiguratorStep from '../components/ConfiguratorModal/ConfiguratorStep'
-import Table from '../components/Table/Table'
+import ConfiguratorModal from '../common/ConfiguratorModal/ConfiguratorModal'
+import ConfiguratorStep from '../common/ConfiguratorModal/ConfiguratorStep'
+import Table from '../common/Table/Table'
+import CarModelStep from '../components/ConfiguratorSteps/CarModelStep/CarModelStep'
 
 const HomePage = () => {
   const [configuratorModalId, setConfiguratorModalId] = useState('')
@@ -110,29 +111,7 @@ const HomePage = () => {
           onClose={() => setConfiguratorModalId('')}
           nextButtonEnabled={true}
         >
-          <ConfiguratorStep
-            stepTitle="Odaberite proizvođaća vašeg vozila"
-            className="step"
-            hidden={false}
-            stepNumber={1}
-          >
-            <form className="form-data row">
-              {
-                // @ts-ignore
-                cars.cars.map(({ name }) => (
-                  <div className="form-group">
-                    <input
-                      type="radio"
-                      id="html"
-                      name="fav_language"
-                      value={name}
-                    />
-                    <label htmlFor="html">{name}</label>
-                  </div>
-                ))
-              }
-            </form>
-          </ConfiguratorStep>
+          <CarModelStep/>
           <ConfiguratorStep
             stepTitle="Odaberite proizvođaća vašeg vozila test"
             className="step"
