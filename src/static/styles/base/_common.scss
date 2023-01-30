@@ -44,3 +44,16 @@
 .hidden {
   display: none;
 }
+
+.content{
+  height: 90vh;
+  justify-content: center;
+
+  .paragraph{
+    color: $primary_blue;
+  }
+}
+
+.logo{
+  padding: rem(10);
+}
