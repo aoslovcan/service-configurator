@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { MouseEventHandler, ReactNode } from 'react'
 
 type FormInputListProps = {
   id: string
   inputType: string
-  handleButtonClick: (data: string) => void
+  handleButtonClick: (data: React.MouseEvent<HTMLInputElement>) => void
   inputValue: string | number | undefined
+  labelValue: string | ReactNode | number | undefined
+  classNames?: string
+  additionalStyle?: string
+  inputName?: string
 }
 
 const FormInput = ({
@@ -12,16 +16,22 @@ const FormInput = ({
   inputType,
   handleButtonClick,
   inputValue,
+  labelValue,
+  classNames = '',
+  additionalStyle = '',
+  inputName = '',
 }: FormInputListProps) => {
   return (
-    <div key={id} className="form-group">
+    <div key={id} className={`form-group ${additionalStyle}`}>
       <input
-        onClick={(e) => handleButtonClick((e.target as HTMLInputElement).value)}
+        name={inputName}
+        className={`${classNames}`}
+        onClick={(e) => handleButtonClick(e)}
         type={inputType}
-        id="carModel"
+        id={id}
         value={inputValue}
       />
-      <label htmlFor="html">{inputValue}</label>
+      <label htmlFor={id}>{labelValue}</label>
     </div>
   )
 }
