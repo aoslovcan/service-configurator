@@ -4,12 +4,13 @@ import carModels from '../../../data/carBrand.json'
 import FormInput from '../../../common/Form/FormInput'
 
 type CarModeStepProps = {
-  handleButtonClick: (data: string) => void
+  handleButtonClick: (data: string | unknown, name: string) => void
 }
 
 const CarModelStep = ({ handleButtonClick }: CarModeStepProps) => {
-  const handleOnClick = (e: string) => {
-    handleButtonClick(e)
+  const handleOnClick = (e: React.MouseEvent<HTMLInputElement>) => {
+    const inputValue = (e.target as HTMLInputElement).value
+    handleButtonClick(inputValue, 'carModel')
   }
 
   return (
@@ -17,11 +18,14 @@ const CarModelStep = ({ handleButtonClick }: CarModeStepProps) => {
       <Form orientation="row">
         {carModels.cars.map(({ id, name }) => (
           <FormInput
+            inputName="car-model"
             key={id}
             id={`car-model-input-${id}`}
             inputType="radio"
-            handleButtonClick={(e) => handleOnClick(e)}
+            handleButtonClick={handleOnClick}
             inputValue={name}
+            labelValue={name}
+            additionalStyle=""
           />
         ))}
       </Form>
