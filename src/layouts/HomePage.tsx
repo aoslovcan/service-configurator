@@ -6,6 +6,8 @@ import ServicesStep from '../components/ConfiguratorSteps/ServicesStep/ServicesS
 import UserForm from '../components/ConfiguratorSteps/UserForm/UserForm'
 import SummaryStep from '../components/ConfiguratorSteps/SummaryStep/SummaryStep'
 import { User } from '../types/types'
+import Navigation from '../components/Navigation/Navigation'
+import tool from '../static/img/tool.jpg'
 
 const HomePage = () => {
   const [configuratorModalId, setConfiguratorModalId] = useState('')
@@ -72,10 +74,19 @@ const HomePage = () => {
   }
 
   return (
-    <>
-      <button onClick={openConfigurator} className="c-button c-button-primary">
-        Pokreni konfigurator
-      </button>
+    <div className="home-page">
+      <Navigation />
+
+      <div className="content column column-center">
+        <img src={tool} alt="" />
+        <p className="paragraph">Pritisnite gumb niže kako biste pokrenuli</p>
+        <button
+          onClick={openConfigurator}
+          className="c-button c-button-primary"
+        >
+          Pokreni konfigurator
+        </button>
+      </div>
 
       {configuratorModalId ? (
         <ConfiguratorModal
@@ -127,7 +138,7 @@ const HomePage = () => {
           </ConfiguratorStep>
         </ConfiguratorModal>
       ) : null}
-    </>
+    </div>
   )
 }
 
