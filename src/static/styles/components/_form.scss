@@ -40,3 +40,19 @@
     border: 1px solid red;
   }
 }
+
+.total-footer {
+  justify-content: space-between;
+  margin-top: rem(20);
+  padding: rem(20);
+  background: #f8f8f8;
+}
+
+.discountLabel {
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    border-bottom: rem(2) solid $primary_blue;
+  }
+}
