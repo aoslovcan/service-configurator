@@ -13,7 +13,6 @@ type ConfiguratorModalProps = {
   nextButtonEnabled?: boolean
   children: ReactNode
   title: string
-  nextButtonControl: SetStateAction<any>
   handleCurrentStep: SetStateAction<any>
 }
 
@@ -21,7 +20,6 @@ const ConfiguratorModal = ({
   id,
   onClose,
   nextButtonEnabled = false,
-  nextButtonControl,
   title,
   children,
   handleCurrentStep,
@@ -56,7 +54,6 @@ const ConfiguratorModal = ({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       setFinishedSteps([...new Set([...finishedSteps, currentStep])])
-      nextButtonControl(false)
       return
     }
 
