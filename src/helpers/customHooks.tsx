@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { ValidationType } from '../types/types'
 
 export const useFocus = () => {
   const focusElement = useRef<HTMLInputElement>(null)
@@ -8,15 +9,6 @@ export const useFocus = () => {
   })
 
   return focusElement
-}
-
-type ValidationType = {
-  string: {
-    required?: {
-      value: boolean
-      message: string
-    }
-  }
 }
 
 export const useForm = (
@@ -34,14 +26,51 @@ export const useForm = (
 
     const newErrors = Object.entries(validations).reduce(
       (errors, [fieldName, validation]) => {
-        const value = formData[fieldName]
+        const value: string | number | unknown = formData[fieldName]
+        const valueRequired = validation?.required.value
+        const customIsValid = validation?.custom?.isValid
+        const valueLength = typeof value === 'string' ? value?.trim().length : 0
 
-        if (validation?.required?.value && !value) {
+        if (valueRequired && !value) {
           return {
             ...errors,
             [fieldName]: validation?.required?.message,
           }
         }
+        //required and custom validation
+        if (
+          ((!valueRequired && value) || valueRequired) &&
+          customIsValid &&
+          !customIsValid(formData)
+        ) {
+          return {
+            ...errors,
+            [fieldName]: validation?.custom?.message,
+          }
+        }
+
+        if (
+          ((!valueRequired && value) || valueRequired) &&
+          validation?.minLength?.value &&
+          valueLength < validation.minLength.value
+        ) {
+          return {
+            ...errors,
+            [fieldName]: validation.minLength.message,
+          }
+        }
+
+        if (
+          ((!valueRequired && value) || valueRequired) &&
+          validation?.maxLength?.value &&
+          valueLength >= validation.maxLength.value
+        ) {
+          return {
+            ...errors,
+            [fieldName]: validation.maxLength.message,
+          }
+        }
+
         return errors
       },
       {}
