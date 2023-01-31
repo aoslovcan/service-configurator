@@ -57,6 +57,15 @@
   }
 }
 
+input.discountInput{
+  padding: rem(11);
+  margin-right: rem(10);
+}
+
+.discountCheckButton{
+  pointer-events: none;
+}
+
 .validation-msg{
   color: $borealis_red;
   font-size: 14px;
