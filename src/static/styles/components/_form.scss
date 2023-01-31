@@ -56,3 +56,8 @@
     border-bottom: rem(2) solid $primary_blue;
   }
 }
+
+.validation-msg{
+  color: $borealis_red;
+  font-size: 14px;
+}

@@ -35,3 +35,13 @@
     cursor: pointer;
   }
 }
+
+.step{
+  animation: fromRight 0.5s ease-out;
+}
+
+@keyframes fromRight {
+  from {
+    transform: translate3d(10%, 0, 0);
+  }
+}
