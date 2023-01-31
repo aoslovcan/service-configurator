@@ -3,9 +3,10 @@ import Form from '../../../common/Form/Form'
 import services from '../../../data/services.json'
 import FormInput from '../../../common/Form/FormInput'
 import DiscountComponent from '../../../common/DiscountComponent/DiscountComponent'
+import { carServices } from '../../../types/types'
 
 type CarModeStepProps = {
-  handleButtonClick: (data: string, name: string) => void
+  handleButtonClick: (data: carServices, name: string) => void
   handleTotalPrice: SetStateAction<any>
 }
 
@@ -32,7 +33,7 @@ const ServicesStep = ({
   }
 
   useEffect(() => {
-    let serviceItems: any = checked.map((id) => getServiceDataById(id))
+    const serviceItems: any = checked.map((id) => getServiceDataById(id))
 
     handleButtonClick(serviceItems, 'carService')
   }, [checked])
