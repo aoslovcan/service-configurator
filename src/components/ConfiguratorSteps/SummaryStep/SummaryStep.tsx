@@ -3,12 +3,13 @@ import Table from '../../../common/Table/Table'
 import { carServices, TableOptions, User } from '../../../types/types'
 import InfoList from '../../../common/InfoList/InfoList'
 import StepReview from './StepReview/StepReview'
+import { summaryStepConst } from '../../../constants/Constants'
 
 type SummaryStepProps = {
   carModel: string
   services: carServices
   userData: User
-  totalPrice: number
+  totalPrice: { total: number; discountPrice: number }
 }
 
 const SummaryStep = ({
@@ -25,8 +26,6 @@ const SummaryStep = ({
     }
   })
 
-  const pricesData = services.map(({ price }) => price)
-
   const tableData: TableOptions[] = [
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -36,7 +35,12 @@ const SummaryStep = ({
       title: '',
       value: (
         <>
-          <span className="text-color-grey-200">Popust30%:</span> -37,50 €
+          {totalPrice.discountPrice > 0 ? (
+            <span>
+              <span className="text-color-grey-200">Popust30%:</span> -
+              {totalPrice.discountPrice} €
+            </span>
+          ) : null}
         </>
       ),
       cellClass: 'moveRight',
@@ -46,7 +50,7 @@ const SummaryStep = ({
       value: (
         <>
           <span className="text-color-grey-200">Ukupno:</span>{' '}
-          <span className="total">{totalPrice} €</span>
+          <span className="total">{totalPrice.total} €</span>
         </>
       ),
       cellClass: 'moveRight',
@@ -74,22 +78,17 @@ const SummaryStep = ({
 
   return (
     <>
-      <p className="paragraph">
-        Molimo vas da još jednom pregledate i potvrdite podatke. Ukoliko želite
-        promijeniti neki od podataka, možete pritisnuti gumb za uređivanje pored
-        svake od kategorija. Kada ste provjerili ispravnost svojih podataka, za
-        slanje upita na servis pritisnite gumb “Pošalji” koji se nalazi na dnu.
-      </p>
+      <p className="paragraph">{summaryStepConst.MESSAGE}</p>
 
-      <StepReview title="Model vozila">
+      <StepReview title={summaryStepConst.CAR_MODEL}>
         <div className="item">{carModel}</div>
       </StepReview>
 
-      <StepReview title="Odabrane usluge">
+      <StepReview title={summaryStepConst.SERVICES}>
         <Table id="config-table" tableData={tableData} />
       </StepReview>
 
-      <StepReview title="Kontakt podaci">
+      <StepReview title={summaryStepConst.USER_INFO}>
         <InfoList listData={userInfoList} />
       </StepReview>
     </>

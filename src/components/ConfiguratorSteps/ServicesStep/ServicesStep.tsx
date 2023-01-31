@@ -2,11 +2,13 @@ import React, { SetStateAction, useEffect, useState } from 'react'
 import Form from '../../../common/Form/Form'
 import services from '../../../data/services.json'
 import FormInput from '../../../common/Form/FormInput'
-import DiscountComponent from '../../../common/DiscaountComponent/DiscountComponent'
+import DiscountComponent from '../../../common/DiscountComponent/DiscountComponent'
+import { carServices, servicePrice } from '../../../types/types'
+import { discountConst } from '../../../constants/Constants'
 
 type CarModeStepProps = {
-  handleButtonClick: (data: string, name: string) => void
-  handleTotalPrice: SetStateAction<any>
+  handleButtonClick: (data: carServices, name: string) => void
+  handleTotalPrice: (data: servicePrice) => void
 }
 
 const ServicesStep = ({
@@ -15,6 +17,7 @@ const ServicesStep = ({
 }: CarModeStepProps) => {
   const [total, setTotal] = useState(0)
   const [checked, setChecked] = useState<number[]>([])
+  const [discountPrice, setDiscountPrice] = useState(0)
 
   const getPriceFromString = (value: string) => {
     const splitValue = value.split('-')[1]
@@ -31,14 +34,14 @@ const ServicesStep = ({
   }
 
   useEffect(() => {
-    let serviceItems: any = checked.map((id) => getServiceDataById(id))
+    const serviceItems: any = checked.map((id) => getServiceDataById(id))
 
     handleButtonClick(serviceItems, 'carService')
   }, [checked])
 
   useEffect(() => {
-    handleTotalPrice(total)
-  }, [total])
+    handleTotalPrice({ total: total, discountPrice: discountPrice })
+  }, [total, discountPrice])
 
   const handleOnClick = (e: React.MouseEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement
@@ -59,6 +62,20 @@ const ServicesStep = ({
     isChecked ? setTotal(total + checkedPrice) : setTotal(total - checkedPrice)
   }
 
+  const totalElem = (
+    <span>
+      Ukupno: <span className="total">${total}€</span>
+    </span>
+  )
+
+  const inputLabelElement = (name: string, price: string) => {
+    return (
+      <>
+        {name} <span className="total">({price})</span>
+      </>
+    )
+  }
+
   return (
     <div className="services-step" data-testid="services-step">
       <Form orientation="row">
@@ -69,11 +86,7 @@ const ServicesStep = ({
             inputType="checkbox"
             handleButtonClick={handleOnClick}
             inputValue={`${name}-${price}`}
-            labelValue={
-              <>
-                {name} <span className="total">({price})</span>
-              </>
-            }
+            labelValue={inputLabelElement(name, price)}
             classNames="checkmark"
             additionalStyle="form-group-bigger-element"
           />
@@ -82,12 +95,11 @@ const ServicesStep = ({
       <div className="total-footer row">
         <DiscountComponent
           price={total}
+          discount={(value: number) => setDiscountPrice(value)}
           setPrice={(value: number) => setTotal(value)}
-          label="imam kupon"
+          label={discountConst.DISCOUNT_BUTTON_LABEL}
         />
-        <span>
-          Ukupno: <span className="total">${total}€</span>
-        </span>
+        {totalElem}
       </div>
     </div>
   )

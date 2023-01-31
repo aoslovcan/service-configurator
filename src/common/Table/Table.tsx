@@ -9,8 +9,8 @@ type TableProps = {
 const Table = ({ id, tableData }: TableProps) => {
   return (
     <table id={id} className="c-table">
-      {tableData.map(({ title, value, cellClass }) => (
-        <tr>
+      {tableData.map(({ title, value, cellClass }, i) => (
+        <tr key={i}>
           <td>{title}</td>
           <td className={`${cellClass}`}>{value}</td>
         </tr>
