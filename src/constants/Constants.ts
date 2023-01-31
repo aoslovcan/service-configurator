@@ -12,3 +12,8 @@ export const confirmationStep = Object.freeze({
     ' Vaša prijava je uspješno poslana i zaprimljena. Kontaktirat ćemo vas u\n' +
     '        najkraćem mogućem roku. Hvala vam!',
 })
+
+export const discountConst = Object.freeze({
+  DISCOUNT_BUTTON_LABEL: 'imam kupon',
+  DISCOUNT_CODE: 'Tokić123',
+})
