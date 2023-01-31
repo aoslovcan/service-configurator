@@ -6,7 +6,7 @@ const ConfirmationStep = () => {
     <div className="column column-center">
       <img src={envelope} />
       <h3>Vaša prijava je uspješno poslana</h3>
-      <p>
+      <p className="paragraph row textCenter">
         Vaša prijava je uspješno poslana i zaprimljena. Kontaktirat ćemo vas u
         najkraćem mogućem roku. Hvala vam!
       </p>
