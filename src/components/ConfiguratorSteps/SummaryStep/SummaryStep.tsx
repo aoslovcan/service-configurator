@@ -18,7 +18,6 @@ const SummaryStep = ({
   totalPrice,
   userData,
 }: SummaryStepProps) => {
-  console.log(totalPrice.discountPrice)
   const servicesData: any = services.map(({ name, price }) => {
     return {
       title: name,
