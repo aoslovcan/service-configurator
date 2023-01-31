@@ -8,7 +8,7 @@ type SummaryStepProps = {
   carModel: string
   services: carServices
   userData: User
-  totalPrice: number
+  totalPrice: { total: number; discountPrice: number }
 }
 
 const SummaryStep = ({
@@ -17,6 +17,7 @@ const SummaryStep = ({
   totalPrice,
   userData,
 }: SummaryStepProps) => {
+  console.log(totalPrice.discountPrice)
   const servicesData: any = services.map(({ name, price }) => {
     return {
       title: name,
@@ -24,8 +25,6 @@ const SummaryStep = ({
       cellClass: 'moveRight',
     }
   })
-
-  const pricesData = services.map(({ price }) => price)
 
   const tableData: TableOptions[] = [
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -36,7 +35,12 @@ const SummaryStep = ({
       title: '',
       value: (
         <>
-          <span className="text-color-grey-200">Popust30%:</span> -37,50 €
+          {totalPrice.discountPrice > 0 ? (
+            <span>
+              <span className="text-color-grey-200">Popust30%:</span> -
+              {totalPrice.discountPrice} €
+            </span>
+          ) : null}
         </>
       ),
       cellClass: 'moveRight',
@@ -46,7 +50,7 @@ const SummaryStep = ({
       value: (
         <>
           <span className="text-color-grey-200">Ukupno:</span>{' '}
-          <span className="total">{totalPrice} €</span>
+          <span className="total">{totalPrice.total} €</span>
         </>
       ),
       cellClass: 'moveRight',

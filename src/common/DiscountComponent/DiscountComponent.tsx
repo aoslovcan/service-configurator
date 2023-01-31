@@ -5,9 +5,15 @@ type DiscountComponent = {
   label: string
   price: number
   setPrice: SetStateAction<any>
+  discount: SetStateAction<any>
 }
 
-const DiscountComponent = ({ label, price, setPrice }: DiscountComponent) => {
+const DiscountComponent = ({
+  label,
+  price,
+  setPrice,
+  discount,
+}: DiscountComponent) => {
   const discountCode = 'Tokić123'
   const errorMessage = 'Pogrešan kupon'
   const [discountCorrect, setDiscountCorrect] = useState(false)
@@ -22,6 +28,7 @@ const DiscountComponent = ({ label, price, setPrice }: DiscountComponent) => {
   useEffect(() => {
     if (discountCorrect) {
       setPrice(discountPrice(price))
+      discount(price - discountPrice(price))
     }
   }, [discountCorrect])
 

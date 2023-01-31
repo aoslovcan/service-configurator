@@ -20,7 +20,7 @@ const HomePage = () => {
   })
 
   const [currentStep, setCurrentStep] = useState(0)
-  const [totalPrice, setTotalPrice] = useState(0)
+  const [totalPrice, setTotalPrice] = useState({ total: 0, discountPrice: 0 })
   const [formValid, setFormValid] = useState(false)
 
   const openConfigurator = () => {

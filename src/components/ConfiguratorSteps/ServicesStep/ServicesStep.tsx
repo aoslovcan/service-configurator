@@ -2,7 +2,7 @@ import React, { SetStateAction, useEffect, useState } from 'react'
 import Form from '../../../common/Form/Form'
 import services from '../../../data/services.json'
 import FormInput from '../../../common/Form/FormInput'
-import DiscountComponent from '../../../common/DiscaountComponent/DiscountComponent'
+import DiscountComponent from '../../../common/DiscountComponent/DiscountComponent'
 
 type CarModeStepProps = {
   handleButtonClick: (data: string, name: string) => void
@@ -15,6 +15,7 @@ const ServicesStep = ({
 }: CarModeStepProps) => {
   const [total, setTotal] = useState(0)
   const [checked, setChecked] = useState<number[]>([])
+  const [discountPrice, setDiscountPrice] = useState(0)
 
   const getPriceFromString = (value: string) => {
     const splitValue = value.split('-')[1]
@@ -37,8 +38,8 @@ const ServicesStep = ({
   }, [checked])
 
   useEffect(() => {
-    handleTotalPrice(total)
-  }, [total])
+    handleTotalPrice({ total: total, discountPrice: discountPrice })
+  }, [total, discountPrice])
 
   const handleOnClick = (e: React.MouseEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement
@@ -82,6 +83,7 @@ const ServicesStep = ({
       <div className="total-footer row">
         <DiscountComponent
           price={total}
+          discount={(value: number) => setDiscountPrice(value)}
           setPrice={(value: number) => setTotal(value)}
           label="imam kupon"
         />
