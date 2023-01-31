@@ -3,6 +3,7 @@ import Table from '../../../common/Table/Table'
 import { carServices, TableOptions, User } from '../../../types/types'
 import InfoList from '../../../common/InfoList/InfoList'
 import StepReview from './StepReview/StepReview'
+import { summaryStepConst } from '../../../constants/Constants'
 
 type SummaryStepProps = {
   carModel: string
@@ -78,22 +79,17 @@ const SummaryStep = ({
 
   return (
     <>
-      <p className="paragraph">
-        Molimo vas da još jednom pregledate i potvrdite podatke. Ukoliko želite
-        promijeniti neki od podataka, možete pritisnuti gumb za uređivanje pored
-        svake od kategorija. Kada ste provjerili ispravnost svojih podataka, za
-        slanje upita na servis pritisnite gumb “Pošalji” koji se nalazi na dnu.
-      </p>
+      <p className="paragraph">{summaryStepConst.MESSAGE}</p>
 
-      <StepReview title="Model vozila">
+      <StepReview title={summaryStepConst.CAR_MODEL}>
         <div className="item">{carModel}</div>
       </StepReview>
 
-      <StepReview title="Odabrane usluge">
+      <StepReview title={summaryStepConst.SERVICES}>
         <Table id="config-table" tableData={tableData} />
       </StepReview>
 
-      <StepReview title="Kontakt podaci">
+      <StepReview title={summaryStepConst.USER_INFO}>
         <InfoList listData={userInfoList} />
       </StepReview>
     </>
