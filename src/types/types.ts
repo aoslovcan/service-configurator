@@ -18,3 +18,23 @@ export type carService = {
 }
 
 export type carServices = carService[]
+
+export type formList = {
+  id: number
+  label: string
+  type: string
+  formDataLabel: string
+}
+
+export type fromLists = formList[]
+
+export interface ValidationType {
+  string:
+    | {
+        required?: {
+          value: boolean
+          message: string
+        }
+      }
+    | undefined
+}
