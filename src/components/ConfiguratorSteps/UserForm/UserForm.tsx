@@ -1,16 +1,8 @@
 import React, { ChangeEvent, SetStateAction, useEffect } from 'react'
 import Form from '../../../common/Form/Form'
-import { User } from '../../../types/types'
 import { useForm } from '../../../helpers/customHooks'
-
-type formList = {
-  id: number
-  label: string
-  type: string
-  formDataLabel: string
-}
-
-type fromLists = formList[]
+import { checkValidation } from '../../../helpers/commonFunction'
+import { fromLists } from '../../../types/types'
 
 type UserFormProps = {
   handleFormData: SetStateAction<any>
@@ -18,7 +10,7 @@ type UserFormProps = {
 }
 
 const UserForm = ({ handleFormData, formValid }: UserFormProps) => {
-  const initialForm: User = {
+  const initialForm: Record<string, unknown> = {
     nameAndSurname: '',
     emailAddress: '',
     phoneNumber: 0,
@@ -31,12 +23,22 @@ const UserForm = ({ handleFormData, formValid }: UserFormProps) => {
         value: true,
         message: '',
       },
+      minLength: {
+        value: 3,
+        message: 'Ensure this field has at least 3 characters.',
+      },
     },
 
     emailAddress: {
       required: {
         value: true,
         message: '',
+      },
+
+      custom: {
+        isValid: ({ emailAddress }: { emailAddress: string }) =>
+          checkValidation(emailAddress, 'email'),
+        message: 'You have entered an invalid email address!',
       },
     },
 
@@ -45,15 +47,22 @@ const UserForm = ({ handleFormData, formValid }: UserFormProps) => {
         value: true,
         message: '',
       },
+
+      custom: {
+        isValid: ({ phoneNumber }: { phoneNumber: string }) =>
+          checkValidation(phoneNumber, 'phoneNumber'),
+        message: 'You have entered an invalid phone number!',
+      },
     },
   }
 
-  const { formData, setFormData, handleChange, isValidForm } = useForm(
-    initialForm,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    validations
-  )
+  const { formData, setFormData, handleChange, isValidForm, formErrors } =
+    useForm(
+      initialForm,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      validations
+    )
 
   useEffect(() => {
     setFormData({ ...initialForm })
@@ -126,11 +135,18 @@ const UserForm = ({ handleFormData, formValid }: UserFormProps) => {
   return (
     <Form orientation="column">
       {formDataList.length
-        ? formDataList.map(({ id, label, type, formDataLabel }, i) => (
+        ? formDataList.map(({ label, type, formDataLabel }, i) => (
             <div key={i} className="form-element">
               <div className="column">
                 <label>{label}</label>
                 {createElement(type, formDataLabel)}
+                <span className="validation-msg">
+                  {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    formErrors && formErrors[formDataLabel]
+                  }
+                </span>
               </div>
             </div>
           ))
