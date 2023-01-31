@@ -18,6 +18,7 @@ export type carService = {
 }
 
 export type carServices = carService[]
+export type servicePrice = { total: number; discountPrice: number }
 
 export type formList = {
   id: number

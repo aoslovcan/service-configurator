@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
 type FormInputListProps = {
   id: string

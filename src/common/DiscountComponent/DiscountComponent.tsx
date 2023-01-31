@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useFocus, useForm } from '../../helpers/customHooks'
 import checkMark from '../../static/icons/checkmark.svg'
+import { discountConst } from '../../constants/Constants'
 
 type StateAction = (value: number) => void
 
@@ -34,13 +35,13 @@ const DiscountComponent = ({
       },
       custom: {
         isValid: ({ discountValue }: { discountValue: string }) =>
-          discountValue === discountCode,
+          discountValue === discountConst.DISCOUNT_CODE,
         message: 'Pokrešan kod',
       },
     },
   }
 
-  const { handleChange, formErrors } = useForm(
+  const { handleChange, formErrors, isValidForm } = useForm(
     initialForm,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -103,7 +104,7 @@ const DiscountComponent = ({
                 formErrors && formErrors['discountValue']
               }
             </span>
-            {discountCorrect ? (
+            {isValidForm ? (
               <button className="c-button c-button-primary discountCheckButton">
                 <img src={checkMark} alt="" />
               </button>
