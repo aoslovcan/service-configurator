@@ -1,11 +1,6 @@
-import React, {
-  MouseEventHandler,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useState,
-} from 'react'
+import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react'
 import ConfirmationStep from '../../components/ConfiguratorSteps/ConfirmationStep/ConfirmationStep'
+import { configuratorButtonNames } from '../../constants/Constants'
 
 type ConfiguratorModalProps = {
   id: string
@@ -13,7 +8,7 @@ type ConfiguratorModalProps = {
   nextButtonEnabled?: boolean
   children: ReactNode
   title: string
-  handleCurrentStep: SetStateAction<any>
+  handleCurrentStep: (value: number) => void
 }
 
 const ConfiguratorModal = ({
@@ -26,33 +21,23 @@ const ConfiguratorModal = ({
 }: ConfiguratorModalProps) => {
   const [currentStep, setCurrentStep] = useState(0)
   const [showConfirmationMessage, setShowConfirmationMessage] = useState(false)
-  const [numberOfSteps, setNumberOfSteps] = useState<number | undefined>(0)
   const [finishedSteps, setFinishedSteps] = useState([
     ...Array.from(Array(currentStep).keys()),
   ])
 
-  const stepChildren = React.Children.map(children, (child, index) =>
-    // @ts-ignore
+  const stepChildren = React.Children.map(children, (child: any, index) =>
     React.cloneElement(child, {
-      // @ts-ignore
       ...child.props,
       hidden: index !== currentStep,
     })
   )
 
-  useEffect(() => {
-    setNumberOfSteps(stepChildren?.length)
-  }, [stepChildren])
-
   const goToNextStep = (e: React.MouseEvent) => {
     const target = e.target as HTMLButtonElement
     const buttonText = target.innerText
 
-    if (buttonText === 'Dalje') {
+    if (buttonText === configuratorButtonNames.NEXT_BUTTON) {
       setCurrentStep(currentStep + 1)
-
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       setFinishedSteps([...new Set([...finishedSteps, currentStep])])
       return
     }
@@ -66,12 +51,13 @@ const ConfiguratorModal = ({
     }
   }
 
+  const isLastStep: boolean = stepChildren?.length - 1 - currentStep === 0
+  const showPreviousButton = currentStep >= 1
+
   useEffect(() => {
     handleCurrentStep(currentStep)
   }, [currentStep])
 
-  // @ts-ignore
-  // @ts-ignore
   return (
     <div id={id} className="c-modal-container">
       <div className="modal">
@@ -91,16 +77,16 @@ const ConfiguratorModal = ({
 
         {!showConfirmationMessage ? (
           <div className="modal__footer row">
-            {currentStep >= 1 ? (
+            {showPreviousButton ? (
               <button
                 onClick={goToPreviousStep}
                 className="c-button c-button-secondary"
               >
-                Nazad
+                {configuratorButtonNames.PREVIOUS_BUTTON}
               </button>
             ) : (
               <button onClick={onClose} className="c-button c-button-secondary">
-                Odustani
+                {configuratorButtonNames.CANCEL_BUTTON}
               </button>
             )}
 
@@ -110,19 +96,15 @@ const ConfiguratorModal = ({
                 nextButtonEnabled ? 'c-button-primary' : 'c-button-disabled'
               }`}
             >
-              {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                stepChildren?.length - 1 - currentStep === 0
-                  ? 'Pošalji'
-                  : 'Dalje'
-              }
+              {isLastStep
+                ? configuratorButtonNames.SENT_BUTTON
+                : configuratorButtonNames.NEXT_BUTTON}
             </button>
           </div>
         ) : (
           <div className="modal__footer column column-center">
             <button onClick={onClose} className="c-button c-button-primary">
-              Zatvori
+              {configuratorButtonNames.CLOSE_BUTTON}
             </button>
           </div>
         )}
